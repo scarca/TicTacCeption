@@ -1,0 +1,19 @@
+<html>
+<head>
+    <link rel="main.css" type="text/css"/>
+    <script src="board.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    setup = function(){
+        c = document.getElementById("board");
+        createBoard(c);
+    }
+    </script>
+</head>
+<body onload="setup()">
+    <div id="boardContainer">
+        <canvas id="board">
+            Get a life, use a modern browser (aka NOT IE 8 or below)
+        </canvas>
+    </div>
+</body>
+</html>
