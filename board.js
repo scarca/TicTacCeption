@@ -85,7 +85,8 @@ function drawInnerSegment(context, xcon, ycon, size){
         context.lineTo(xcon+size, ycon+inc*x);
     }
 }
-function victory(context, relstep, relstart){
+function victory(context, relstep, relstart, ret){
+    console.log(ret)
     context.beginPath()
     context.lineWidth = 10;
     context.strokeStyle = g.state? "#FF0000" : "#0000FF"
@@ -94,16 +95,17 @@ function victory(context, relstep, relstart){
     context.stroke();
 }
 function drawVictory(ref, ret){
+    console.log(ret)
     var context = globalElement.getContext('2d')
     var relstep = maingrid.array[ref.major.x][ref.major.y].value.step
     var relstart = maingrid.array[ref.major.x][ref.major.y].value.start
-    victory(context, relstep, relstart)
+    victory(context, relstep, relstart, ret)
 }
 function drawBigVictory(ref, ret){
     var context = globalElement.getContext('2d')
     var relstep = maingrid.step
     var relstart = maingrid.start
-    victory(context, relstep, relstart)
+    victory(context, relstep, relstart, ret)
 }
 /* Move Validation Segment
  * Everything here deals with verifying the moves of the game and making moves
@@ -174,7 +176,7 @@ var moveCheck = function(ref){
 var validateMove = function(ref){
     //Check if this specific position has been taken yet
     if(maingrid.array[ref.major.x][ref.major.y].value.array[ref.minor.x][ref.minor.y].taken != 0){
-        console.log("NotUsedFailed");
+        console.log("NotUsedFailed: ",maingrid.array[ref.major.x][ref.major.y].value.array[ref.minor.x][ref.minor.y].taken );
         return false
     }
     else if((ref.major.x != g.nx || ref.major.y != g.ny) && g.started){
@@ -243,7 +245,7 @@ var checkGrid = function(obj){
             return check3_dl
         } else if(check3_dr.length == 3){
             console.log("diag right won")
-            return check3_dl
+            return check3_dr
         }
     }
     return {x: -1, y: -1}
