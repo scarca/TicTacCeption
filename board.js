@@ -161,6 +161,18 @@ var recursiveMoveCheck = function(ref){
         return true;
     }
 }
+//Replace faulty Recursive move check 
+var moveCheck = function(ref){ 
+    //Get next cell 
+    var xref = ref.minor.x; 
+    var yref = ref.minor.y; 
+    for(var i = 0; i < 3; i++){ 
+        for(var j = 0; j < 3; j++){ 
+            if(maingrid.array[ref.major.x][ref.major.y].value.taken == 0) return true   
+        }
+    }
+    return false;
+}
 var validateMove = function(ref){
     //Check if this specific position has been taken yet
     if(maingrid.array[ref.major.x][ref.major.y].value.array[ref.minor.x][ref.minor.y].taken != 0){
@@ -174,6 +186,10 @@ var validateMove = function(ref){
         console.log('recursion failed')
         return false;
     }
+    // else if(!moveCheck(ref)){ 
+    //     console.log("Move Failed")
+    //     return false; 
+    // } 
     else{
         var v = ""
         //player 1 = true
