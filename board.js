@@ -168,7 +168,7 @@ var moveCheck = function(ref){
     var yref = ref.minor.y; 
     for(var i = 0; i < 3; i++){ 
         for(var j = 0; j < 3; j++){ 
-            if(maingrid.array[i][j].value.taken == 0) return true   
+            if(maingrid.array[ref.major.x][ref.major.y].value.taken == 0) return true   
         }
     }
     return false;
@@ -182,14 +182,14 @@ var validateMove = function(ref){
     else if((ref.major.x != g.nx || ref.major.y != g.ny) && g.started){
         return false;
     }
-    // else if(!recursiveMoveCheck(ref)){
-    //     console.log('recursion failed')
-    //     return false;
-    // }
-    else if(!moveCheck(ref)){ 
-        console.log("Move Failed")
-        return false; 
-    } 
+    else if(!recursiveMoveCheck(ref)){
+        console.log('recursion failed')
+        return false;
+    }
+    // else if(!moveCheck(ref)){ 
+    //     console.log("Move Failed")
+    //     return false; 
+    // } 
     else{
         var v = ""
         //player 1 = true
