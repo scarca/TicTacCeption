@@ -85,18 +85,25 @@ function drawInnerSegment(context, xcon, ycon, size){
         context.lineTo(xcon+size, ycon+inc*x);
     }
 }
-function drawVictory(ref, ret){
-    var context = globalElement.getContext('2d')
-    var relstep = maingrid.array[ref.major.x][ref.major.y].value.step
-    var relstart = maingrid.array[ref.major.x][ref.major.y].value.start
+function victory(context, relstep, relstart){
     context.beginPath()
     context.lineWidth = 10;
     context.strokeStyle = g.state? "#FF0000" : "#0000FF"
     context.moveTo(relstart.x + relstep*ret[0].x + relstep/2, relstart.y + relstep*ret[0].y + relstep/2)
     context.lineTo(relstart.x + relstep*ret[2].x + relstep/2, relstart.y + relstep*ret[2].y + relstep/2)
     context.stroke();
-    //Generally, I have 1st, 2nd, 3rd values in order, which is nice.
-
+}
+function drawVictory(ref, ret){
+    var context = globalElement.getContext('2d')
+    var relstep = maingrid.array[ref.major.x][ref.major.y].value.step
+    var relstart = maingrid.array[ref.major.x][ref.major.y].value.start
+    victory(context, relstep, relstart)
+}
+function drawBigVictory(ref, ret){
+    var context = globalElement.getContext('2d')
+    var relstep = maingrid.step
+    var relstart = maingrid.start
+    victory(context, relstep, relstart)
 }
 /* Move Validation Segment
  * Everything here deals with verifying the moves of the game and making moves
@@ -189,7 +196,7 @@ var checkGrid = function(obj){
     for(var i = 0; i < 3; i++){
         console.log("i: ", i)
         check3_v = [];
-        check3_h = []; 
+        check3_h = [];
         if(obj.array[i][i].taken==listen){
             check3_dl.push({x:i,y:i});
             console.log("diag-left check", i, i, check3_dl);
@@ -223,13 +230,6 @@ var checkGrid = function(obj){
             return check3_dl
         }
     }
-    // for(var i = 0; i < 3; i++){
-    //     //Reset the verticle counter
-    //
-    //     for(var j = 0; j < 3; j++){
-    //
-    //     }
-    // }
     return {x: -1, y: -1}
 }
 var evaluate = function(ref){
