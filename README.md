@@ -1,5 +1,6 @@
 # TicTacCeption
 Play tic tac toe inside of tic tac toe. 
+Play online at https://scarca.github.io/TicTacCeption/
 
 Rules of the Game: 
 ==================
@@ -33,7 +34,7 @@ If Player 1 plays in (1, 2), then Player 2 must play in any cell of the tiny boa
 Instructions to use
 ===================
 1. Download the repository. There is a little button on the right-hand bar of the page that says "download zip" 
-2. Unzip and open "main.html" 
+2. Unzip and open "index.html" 
 3. Enjoy! 
 
 NOTE: IE 8 AND BELOW ARE NOT SUPPORTED. 
