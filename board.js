@@ -184,9 +184,12 @@ var checkGrid = function(obj){
     var check3_h = []
     var check3_dl = []
     var check3_dr = []
+    //There should be a more elegant way, but since IDK it yet, this will be commented out.
+    //Will use the ugly method instead.
     for(var i = 0; i < 3; i++){
         console.log("i: ", i)
-        check3_h = [];
+        check3_v = [];
+        check3_h = []; 
         if(obj.array[i][i].taken==listen){
             check3_dl.push({x:i,y:i});
             console.log("diag-left check", i, i, check3_dl);
@@ -220,6 +223,13 @@ var checkGrid = function(obj){
             return check3_dl
         }
     }
+    // for(var i = 0; i < 3; i++){
+    //     //Reset the verticle counter
+    //
+    //     for(var j = 0; j < 3; j++){
+    //
+    //     }
+    // }
     return {x: -1, y: -1}
 }
 var evaluate = function(ref){
