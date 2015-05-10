@@ -182,10 +182,10 @@ var validateMove = function(ref){
     else if((ref.major.x != g.nx || ref.major.y != g.ny) && g.started){
         return false;
     }
-    else if(!recursiveMoveCheck(ref)){
-        console.log('recursion failed')
-        return false;
-    }
+    // else if(!recursiveMoveCheck(ref)){
+    //     console.log('recursion failed')
+    //     return false;
+    // }
     // else if(!moveCheck(ref)){ 
     //     console.log("Move Failed")
     //     return false; 
