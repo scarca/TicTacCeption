@@ -184,7 +184,7 @@ var validateMove = function(ref){
     //     console.log('recursion failed')
     //     return false;
     // }
-
+    else{
         var v = ""
         //player 1 = true
         if(g.state == true) v = 1;
