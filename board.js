@@ -86,7 +86,6 @@ function drawInnerSegment(context, xcon, ycon, size){
     }
 }
 function victory(context, relstep, relstart, ret){
-    console.log(ret)
     context.beginPath()
     context.lineWidth = 10;
     context.strokeStyle = g.state? "#FF0000" : "#0000FF"
@@ -95,7 +94,6 @@ function victory(context, relstep, relstart, ret){
     context.stroke();
 }
 function drawVictory(ref, ret){
-    console.log(ret)
     var context = globalElement.getContext('2d')
     var relstep = maingrid.array[ref.major.x][ref.major.y].value.step
     var relstart = maingrid.array[ref.major.x][ref.major.y].value.start
@@ -170,10 +168,10 @@ var validateMove = function(ref){
     else if((ref.major.x != g.nx || ref.major.y != g.ny) && g.started){
         return false;
     }
-    else if(!recursiveMoveCheck(ref)){
-        console.log('recursion failed')
-        return false;
-    }
+    // else if(!recursiveMoveCheck(ref)){
+    //     console.log('recursion failed')
+    //     return false;
+    // }
     else{
         var v = ""
         //player 1 = true
@@ -196,39 +194,39 @@ var checkGrid = function(obj){
     //There should be a more elegant way, but since IDK it yet, this will be commented out.
     //Will use the ugly method instead.
     for(var i = 0; i < 3; i++){
-        console.log("i: ", i)
+    //    console.log("i: ", i)
         check3_v = [];
         check3_h = [];
         if(obj.array[i][i].taken==listen){
             check3_dl.push({x:i,y:i});
-            console.log("diag-left check", i, i, check3_dl);
+            //console.log("diag-left check", i, i, check3_dl);
         }
         if(obj.array[2-i][i].taken == listen){
             check3_dr.push({x:2-i,y:i});
-            console.log("diag-right check", 2-i, i, check3_dr);
+            //console.log("diag-right check", 2-i, i, check3_dr);
         }
         for(var j = 0; j < 3; j++){
-            console.log("Going through", i, j, obj.array[i][j].taken, "alt:", obj.array[j][i].taken)
+            //console.log("Going through", i, j, obj.array[i][j].taken, "alt:", obj.array[j][i].taken)
             if(obj.array[j][i].taken==listen){
                 check3_h.push({x:j,y:i});
-                console.log("horizontal check", j, i, check3_h);
+            //    console.log("horizontal check", j, i, check3_h);
             }
             if(obj.array[i][j].taken==listen){
                 check3_v.push({x:i,y:j});
-                console.log("veritical check", i, j, check3_v);
+            //    console.log("veritical check", i, j, check3_v);
             }
         }
         if(check3_v.length == 3){
-            console.log("vert won")
+            //console.log("vert won")
             return check3_v
         }else if(check3_h.length == 3){
-            console.log("hor won")
+            //console.log("hor won")
             return check3_h
         } else if(check3_dl.length == 3){
-            console.log("diag left won")
+            //console.log("diag left won")
             return check3_dl
         } else if(check3_dr.length == 3){
-            console.log("diag right won")
+            //console.log("diag right won")
             return check3_dr
         }
     }
@@ -252,6 +250,7 @@ var evaluate = function(ref){
 var mark = function(e){
     var canvas = document.getElementById("board");
     var c = isolate(canvas.relMouseCoords(e));
+    console.log(c.major.x, c.major.y, c.minor.x, c.minor.y)
     var w = validateMove(c)
     if(w == false){
         return;
@@ -260,7 +259,6 @@ var mark = function(e){
     g.started = true;
     g.nx = c.minor.x;
     g.ny = c.minor.y;
-    console.log(g.nx, g.ny)
     var x = c.x;
     var y = c.y;
     var cont = canvas.getContext("2d");
@@ -271,10 +269,8 @@ var mark = function(e){
         cont.fillStyle = "#0000FF"
     }
     g.state = w ? !g.state : g.state;
-    console.log(x, y);
     cont.fillRect(x + 5, y + 5, SIZE/3/3 - 20 , SIZE/3/3 - 20);
     cont.stroke();
-    console.log(e);
 }
 game = function(){
     this.state = true; //true = player 1, false= player2
